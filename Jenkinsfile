@@ -19,7 +19,6 @@ pipeline{
             }            
         }
         stage('Publish'){
-                 
             steps{
                 echo(message: 'Publish') 
                 echo(message: "Build ID: ${env.BUILD_ID}, Name : ${name}")            
@@ -27,5 +26,19 @@ pipeline{
                  sh(script: 'ls -la')           
             }            
         }
+        
     }
+    post{
+            always {
+                script("post script"){
+                    if (currentBuild.result == 'SUCCESS') {
+                        echo "Build Succeeded!"
+                        echo(message: "${previousBuild}")
+                    } else {
+                        echo "Build Failed!"
+                    }
+                }
+            }
+              
+        }
 }
