@@ -30,12 +30,12 @@ pipeline{
     }
     post{
             always {
-                script("post script"){
-                    if (currentBuild.result == 'SUCCESS') {
-                        echo "Build Succeeded!"
-                        echo(message: " pervious build  : ${currentBuild.previousBuild}")
+                script {
+                    if (currentBuild.previousBuild) {
+                        echo(message: "Previous build number: ${currentBuild.previousBuild.number}")
+                        echo(message: "Previous build result: ${currentBuild.previousBuild.result}")
                     } else {
-                        echo "Build Failed!"
+                        echo(message: "No previous build exists.")
                     }
                 }
             }
