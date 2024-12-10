@@ -9,22 +9,22 @@ pipeline{
         stage('Build'){
             steps{
                 echo(message: 'build')
-                echo(message: '${env.BUILD_ID} ${param.name}')                
+                echo(message: "Build ID: ${env.BUILD_ID}, Name : ${name}")                
             }            
         }
         stage('Test'){
             steps{
                 echo(message: 'Test')
-                echo(message: '${env.BUILD_ID}')                
+                echo(message: "Build ID: ${env.BUILD_ID}, Name : ${name}")            
             }            
         }
         stage('Publish'){
                  
             steps{
-                echo(message: 'Publish')
-                echo(message: '${env.BUILD_ID}')
+                echo(message: 'Publish') 
+                echo(message: "Build ID: ${env.BUILD_ID}, Name : ${name}")            
                 sh(script: 'hostname')
-                            
+                 sh(script: 'ls -la')           
             }            
         }
     }
