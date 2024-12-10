@@ -33,7 +33,7 @@ pipeline{
                 script("post script"){
                     if (currentBuild.result == 'SUCCESS') {
                         echo "Build Succeeded!"
-                        echo(message: "${previousBuild}")
+                        echo(message: " pervious build  : ${currentBuild.previousBuild}")
                     } else {
                         echo "Build Failed!"
                     }
